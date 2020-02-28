@@ -9,12 +9,36 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/dreznichenko/Internship/Internship/Symfony/back/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/dreznichenko/Internship/Internship/Symfony/back/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
+    <h1 style="text-align: center">Менеджер заметок✅</h1>
+    <div>
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for note in notes %}
+        <tr>
+            <th scope="row">{{ note.id }}</th>
+            <td>{{ note.title }}</td>
+            <td>{{ note.description }}</td>
+            <td>{{ note.status }}</td>
+            <td>{{ note.created|date('Y-m-d h:i') }}</td>
+            <td><a href="{{ path('remove', {'note': note.id}) }}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

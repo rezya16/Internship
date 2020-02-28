@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,24 +18,37 @@ class Notes
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = "3",
+     *     max = "51",
+     *     minMessage = "{{ limit }} мало",
+     *     maxMessage = "много",
+     * )
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @ORM\Column(type="string", length=1200, nullable=true)
      */
     private $description;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $status;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $сcreated;
+    private $created;
 
     public function getId(): ?int
     {
@@ -77,14 +91,14 @@ class Notes
         return $this;
     }
 
-    public function getсcreated(): ?\DateTimeInterface
+    public function getCreated(): ?\DateTimeInterface
     {
-        return $this->сcreated;
+        return $this->created;
     }
 
-    public function setсcreated(?\DateTimeInterface $сcreated): self
+    public function setCreated(?\DateTimeInterface $created): self
     {
-        $this->сcreated = $сcreated;
+        $this->created = $created;
 
         return $this;
     }

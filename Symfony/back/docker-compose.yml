@@ -16,7 +16,7 @@ services:
     environment:
       APP_ENV: 'dev'
       APP_DEBUG: 'true'
-      DATABASE_URL: 'mysql://dev:dev@mysql:3306/dev'
+      DATABASE_URL: 'mysql://root:root@172.17.01:33065/todos'
       VIRTUAL_HOST: dev.loc
       PHP_IDE_CONFIG: 'serverName=docker'
       XDEBUG_CONFIG: '172.17.0.1'
@@ -55,7 +55,7 @@ services:
       - dev-back
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dev
+      MYSQL_DATABASE: todos
       MYSQL_USER: dev
       MYSQL_PASSWORD: dev
       VIRTUAL_HOST: mysql.dev.loc
